@@ -1,0 +1,65 @@
+@import 'colors';
+
+.animated-card {
+    z-index: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+}
+
+.animated-card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: $primary;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -o-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+}
+
+.animated-card:hover::before {
+    -o-transform: scale(36);
+    -ms-transform: scale(36);
+    -moz-transform: scale(36);
+    -webkit-transform: scale(36);
+    transform: scale(36);
+}
+
+.animated-card:hover {
+    transition: all 0.3s ease-out;
+    color: white !important;
+    box-shadow: 0px 0px 999px 999px rgba(#f3f5f7, 0.7);
+    z-index: 500;
+}
+
+.animated-card-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background-color: $primary;
+    border-radius: 0 4px 0 32px;
+}
+
+.animated-card-icon {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: white;
+}
