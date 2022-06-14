@@ -1,19 +1,39 @@
+/*
+ * ------------------------ SignupForm --------------------------------
+ * 
+ * Package:         client
+ * Module:          components/forms
+ * File:            SignupForm.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         pages/Signup
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useState } from "react";
 
 import { Row, Col, Button, Spinner } from "react-bootstrap";
 
 import { Formik, Form } from "formik";
-import { SignupSchema } from "../../validations";
 
+import { SignupSchema } from "../../validations";
 import { api } from "../../services";
 import { useNotification } from "../../hooks";
 
 import { Input } from '../ui-core';
 
+// SignupForm component
+// -- Exported
 const SignupForm = ({ next, data }) => {
-    const notify = useNotification();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false); // Set while performing api call
+    const notify = useNotification(); // Notification handler
 
+    // Perform signup
     const handleSubmit = (user) => {
         setLoading(true);
         api.sessions.signup(user)

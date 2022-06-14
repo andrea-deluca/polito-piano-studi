@@ -6,19 +6,17 @@
  * File:            AnimatedCard.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-14
  * 
- * Used in:         
+ * Used in:         pages/Dashboard
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
  * --------------------------------------------------------------------
  */
 
-// Client routes navigation
 import { Link } from 'react-router-dom';
 
-// Client UI/UX
 import { Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -42,7 +40,7 @@ const Wrapper = ({ link, disabled, children }) => {
 
 // AnimatedCard component
 // -- Exported
-const AnimatedCard = ({ category, title, footer, height, disabled, to, children }) => {
+const AnimatedCard = ({ title, footer, height, disabled, to, children }) => {
 
     // Dynamic classes
     const cardClass = classNames({
@@ -58,10 +56,7 @@ const AnimatedCard = ({ category, title, footer, height, disabled, to, children 
                     <FontAwesomeIcon icon={faArrowRight} size='xs' className='animated-card-icon' />
                 </div>
                 <Card.Body className='d-flex flex-column justify-content-between'>
-                    <div>
-                        <Card.Text className='lh-1 mb-2 fw-medium opacity-50 small'>{category}</Card.Text>
-                        <Card.Title className='fs-3'>{title}</Card.Title>
-                    </div>
+                    <Card.Title className='fs-3'>{title}</Card.Title>
                     <Card.Text className='fw-light small'>
                         {children}
                     </Card.Text>

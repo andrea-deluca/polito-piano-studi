@@ -1,5 +1,24 @@
+/*
+ * ------------------------ ConfirmationModal -------------------------
+ * 
+ * Package:         client
+ * Module:          components/ui-core
+ * File:            ConfirmationModal.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         pages/Plan
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { Modal, Button, Spinner } from "react-bootstrap";
 
+// ConfirmationModal component
+// -- Exported
 const ConfirmationModal = ({ show, onHide, onConfirm, loading }) => {
     return (
         <Modal show={show} onHide={onHide} centered>

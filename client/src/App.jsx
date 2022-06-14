@@ -1,9 +1,24 @@
+/*
+ * ------------------------ App ---------------------------------------
+ * 
+ * Package:         client
+ * File:            App.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-15
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import { AnimatePresence } from 'framer-motion'
 
 import { Session } from "./contexts";
-
 import { Utils } from "./components";
 import * as Pages from "./pages";
 
@@ -22,7 +37,6 @@ function App() {
             </Route>
             <Route path="/explore" element={<Pages.Explore />} />
             <Route element={<Utils.ProtectedRoute />}>
-              {/* TO DO: PermissionRoute */}
               <Route path="/dashboard" element={<Pages.Dashboard />} />
               <Route path="/plan" element={<Pages.Plan />} />
               <Route path="/plan/edit" element={<Pages.EditPlan />} />

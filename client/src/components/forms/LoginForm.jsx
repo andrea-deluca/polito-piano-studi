@@ -1,28 +1,48 @@
+/*
+ * ------------------------ LoginForm ---------------------------------
+ * 
+ * Package:         client
+ * Module:          components/forms
+ * File:            LoginForm.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         pages/Login
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Button, Spinner } from 'react-bootstrap';
 
+import { Formik, Form } from 'formik';
+
+import { LoginSchema } from '../../validations';
 import { api } from '../../services';
 import { useNotification, useSession } from '../../hooks';
 
-import { Formik, Form } from 'formik';
-import { LoginSchema } from '../../validations';
-
 import { Input } from '../ui-core';
 
+// LoginForm component
+// -- Exported
 const LoginForm = () => {
-    const [loading, setLoading] = useState(false);
-    const session = useSession();
-    const notify = useNotification();
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false); // Set while perfoming api call
+    const session = useSession(); // Session handler
+    const notify = useNotification(); // Notification handler
+    const navigate = useNavigate(); // Navigation handler
 
+    // Perform authentication and login
     const handleSubmit = (credentials) => {
         setLoading(true);
         api.sessions.login(credentials)
             .then(user => {
-                notify.success(`Bentornato, ${user.firstname}! Chi sei?`);
                 session.login();
+                notify.success(`Bentornato, ${user.firstname}!`);
                 navigate('/dashboard', { replace: true });
             })
             .catch(err => notify.error(err))

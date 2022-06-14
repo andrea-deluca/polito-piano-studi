@@ -1,12 +1,12 @@
 /*
- * ------------------------ index -------------------------------------
+ * ------------------------ services ----------------------------------
  * 
  * Package:         client
  * Module:          services
  * File:            index.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-15
  * 
  * Used in:         
  * 

@@ -71,7 +71,7 @@ const Plan = () => {
                         <h6 className='fw-bold'>{session.plan.totCredits} CFU</h6>
                     </div>
                 </div>
-                <UI.CoursesList courses={courses.filter(course => session.plan.courses.includes(course.code))} />
+                <UI.CoursesList expandable courses={courses.filter(course => session.plan.courses.includes(course.code))} />
             </>
         );
 

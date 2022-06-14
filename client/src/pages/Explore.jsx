@@ -29,7 +29,7 @@ const Explore = () => {
                             <h3 className='fw-semibold text-primary'>Tutti i corsi offerti</h3>
                             <Button variant='link' size='sm' className='text-secondary text-decoration-none p-0'>Vedi tutte</Button>
                         </div>
-                        <CoursesList courses={courses} />
+                        <CoursesList expandable courses={courses} />
                     </Col>
                 </Col>
             </Row >

@@ -1,14 +1,31 @@
+/*
+ * ------------------------ scss --------------------------------------
+ * 
+ * Package:         client
+ * Module:          scss
+ * File:            index.scss
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-15
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 // Vendors
-@use 'bootstrap';
+@use "bootstrap";
 
 // App
-@use 'app';
+@use "app";
 
 // Components
-@use 'animated-card';
-@use 'navigation';
-@use 'option-modal';
-@use 'sidebar';
+@use "animated-card";
+@use "navigation";
+@use "option-modal";
+@use "sidebar";
 
 // Notifications
-@import '~react-toastify/dist/ReactToastify.min.css';
+@import "~react-toastify/dist/ReactToastify.min.css";

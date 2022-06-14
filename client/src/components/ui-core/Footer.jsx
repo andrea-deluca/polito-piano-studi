@@ -6,16 +6,15 @@
  * File:            Footer.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-14
  * 
- * Used in:         
+ * Used in:         components/utils/LayoutRoute
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
  * --------------------------------------------------------------------
  */
 
-// Client UI/UX
 import { Row, Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'

@@ -1,24 +1,46 @@
+/*
+ * ------------------------ OptionalModal ------------------------------
+ * 
+ * Package:         client
+ * Module:          components/ui-core
+ * File:            OptionalModal.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useEffect, useState } from "react";
+
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons';
 
 import { api } from "../../services";
 import { useNotification, useSession } from "../../hooks";
-
 import { date } from "../../helpers";
 
+// OptionModal component
+// -- Exported
 const OptionModal = ({ show, onHide }) => {
-    const [options, setOptions] = useState([]);
-    const session = useSession();
-    const notify = useNotification();
+    const [options, setOptions] = useState([]); // Study plan options
+    const session = useSession(); // Session handler
+    const notify = useNotification(); // Notification handler
 
+    // API call to the server to load from db study plan options info
     useEffect(() => {
         api.plans.getStudyPlanOptions()
             .then(options => setOptions(options))
             .catch(err => notify.error(err));
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    // Create a local study plan into the client session in according to
+    // the study plan option choosen from the user
     const createStudyPlan = (type) => {
         const selectedOption = options.find(option => option.id === type);
         session.createLocalPlan({

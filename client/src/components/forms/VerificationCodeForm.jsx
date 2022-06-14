@@ -1,20 +1,41 @@
+/*
+ * ------------------------ VerificationCodeForm -----------------------
+ * 
+ * Package:         client
+ * Module:          components/forms
+ * File:            VerificationCodeForm.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         pages/Signup
+ *                  components/utils/ProtectedRoute
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useState } from "react";
 
 import { Button, Spinner } from "react-bootstrap";
 
 import { Formik, Form } from "formik";
-import { VerificationCodeSchema } from "../../validations";
 
+import { VerificationCodeSchema } from "../../validations";
 import { api } from "../../services";
 import { useNotification, useSession } from "../../hooks";
 
 import { Input } from "../ui-core";
 
+// VerificationCodeForm component
+// -- Exported
 const VerificationCodeForm = ({ variant, next, email }) => {
-    const session = useSession();
-    const notify = useNotification();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false); // Set while performing api call
+    const session = useSession(); // Session handler
+    const notify = useNotification(); // Notification handler
 
+    // Send verification code by email to the user registration email
     const sendVerificationCode = () => {
         const notification = notify.promise.loading("Sending...")
         api.sessions.sendVerificationCode({ email: email })
@@ -22,14 +43,14 @@ const VerificationCodeForm = ({ variant, next, email }) => {
             .catch(err => notify.promise.error(notification, err))
     }
 
+    // Perfom email and account verification
     const handleSubmit = (values) => {
         setLoading(true);
-        console.log(email)
         api.sessions.verifyEmail({ ...values, email: email })
             .then(() => {
                 if (variant === 'modal') {
-                    notify.success({ message: "Verified" })
                     session.updateInfo();
+                    notify.success({ message: "Verified" })
                 } next();
             })
             .catch(err => notify.error(err))

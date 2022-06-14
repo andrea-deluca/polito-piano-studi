@@ -1,10 +1,27 @@
+/*
+ * ------------------------ UserBadge ---------------------------------
+ * 
+ * Package:         client
+ * Module:          components/ui-core
+ * File:            UserBadge.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useSession } from "../../hooks";
 
 const UserBadge = () => {
-    const session = useSession();
+    const session = useSession(); // Session handler
 
     return (
         <div className="d-none d-xl-flex text-start rounded-3 align-items-center py-3 rounded-3 my-5">

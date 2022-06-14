@@ -6,7 +6,7 @@
  * File:            Input.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-14
  * 
  * Used in:         
  * 
@@ -15,12 +15,10 @@
  * --------------------------------------------------------------------
  */
 
-// Form client validation and validation error handler
-import { Field, ErrorMessage, useField } from "formik";
-
-// Client UI/UX
 import { Form } from "react-bootstrap";
 import classNames from "classnames";
+
+import { Field, ErrorMessage, useField } from "formik";
 
 // Input component
 // -- Exported

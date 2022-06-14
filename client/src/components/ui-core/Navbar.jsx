@@ -1,4 +1,19 @@
-import { NavLink } from "react-router-dom";
+/*
+ * ------------------------ Navbar ------------------------------------
+ * 
+ * Package:         client
+ * Module:          components/ui-core
+ * File:            Navbar.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
 
 import { Row, Col, Navbar as NavigationBar, Container, Nav, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,15 +21,18 @@ import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 import { api } from "../../services";
 import { useSession } from "../../hooks";
-
 import { navbarItems, sidebarItems } from "../../constants";
 
 import HamburgerMenu from "./HamburgerMenu";
 import AppBrand from './AppBrand';
+import NavigationLinks from "./NavigationLinks";
 
+// Navigation component
+// -- Not exported
 const Navigation = () => {
-    const session = useSession();
+    const session = useSession(); // Session handler
 
+    // Perform logout of the logged in user
     const handleLogout = () => {
         api.sessions.logout()
             .then(() => {
@@ -24,36 +42,21 @@ const Navigation = () => {
 
     return (
         <Nav className="d-none d-xl-flex align-items-center">
-            {!session.loggedIn ? navbarItems.map((item, index) => {
-                return (
-                    <NavLink key={index} to={item.url} className='navigation-item fw-bold text-primary text-decoration-none me-5 px-2' style={({ isActive }) =>
-                        isActive ? { opacity: '100%' } : { opacity: '50%' }}>
-                        <FontAwesomeIcon icon={item.icon} className='me-3' />
-                        {item.text}
-                    </NavLink>
-                );
-            }) : <>
-                {sidebarItems.map((section) => {
-                    return section.links.map((item, index) => {
-                        return (
-                            <NavLink key={index} to={item.url} className='navigation-item fw-bold text-primary text-decoration-none me-5 px-2' style={({ isActive }) =>
-                                isActive ? { opacity: '100%' } : { opacity: '50%' }}>
-                                <FontAwesomeIcon icon={item.icon} className='me-3' />
-                                {item.label}
-                            </NavLink>
-                        );
-                    })
-                })}
-                <Button variant='outline-secondary' className='nd-flex align-items-center border-0 rounded-3 px-2' onClick={handleLogout}>
-                    <FontAwesomeIcon icon={faArrowRightFromBracket} className='me-3' />
-                    <small>Logout</small>
-                </Button>
-            </>
+            {!session.loggedIn ?
+                <NavigationLinks variant="navbar" items={navbarItems} /> :
+                <NavigationLinks variant="navbar" items={sidebarItems}>
+                    <Button variant='outline-secondary' className='align-items-center border-0 rounded-3 px-2' onClick={handleLogout}>
+                        <FontAwesomeIcon icon={faArrowRightFromBracket} className='me-3' />
+                        <small>Logout</small>
+                    </Button>
+                </NavigationLinks>
             }
         </Nav>
     );
 }
 
+// Navbar component
+// -- Exported
 const Navbar = () => {
     return (
         <Row className="mb-5">

@@ -6,19 +6,18 @@
  * File:            AppBrand.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-14
  * 
- * Used in:         
+ * Used in:         components/ui-core/Navbar
+ *                  components/ui-core/Sidebar
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
  * --------------------------------------------------------------------
  */
 
-// Client routes navigation
 import { Link } from "react-router-dom";
 
-// Client UI/UX
 import { Navbar } from "react-bootstrap";
 
 // AppBrand component

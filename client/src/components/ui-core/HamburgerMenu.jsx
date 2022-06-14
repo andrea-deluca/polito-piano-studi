@@ -1,5 +1,22 @@
+/*
+ * ------------------------ HamburgerMenu -----------------------------
+ * 
+ * Package:         client
+ * Module:          components/ui-core
+ * File:            HamburgerMenu.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-14
+ * 
+ * Used in:         components/ui-core/Navbar
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Button, Offcanvas, Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,15 +24,18 @@ import { faBars, faClose, faArrowRightFromBracket } from '@fortawesome/free-soli
 
 import { api } from "../../services";
 import { useSession } from "../../hooks";
-
 import { navbarItems, sidebarItems } from "../../constants";
 
 import AnimatedCard from "./AnimatedCard";
+import NavigationLinks from "./NavigationLinks";
 
+// HamburgerMenu component
+// -- Exported
 const HamburgerMenu = () => {
-    const [show, setShow] = useState(false);
-    const session = useSession();
+    const [show, setShow] = useState(false); // Set while menu is open
+    const session = useSession(); // Session handler
 
+    // Perform logout of the logged in user
     const handleLogout = () => {
         api.sessions.logout()
             .then(() => {
@@ -39,27 +59,8 @@ const HamburgerMenu = () => {
                     <Nav className="fs-5 d-flex mt-4 mb-5 px-4">
                         <div className="d-flex flex-column">
                             {!session.loggedIn ?
-                                navbarItems.map((item, index) => {
-                                    return (
-                                        <NavLink key={index} to={item.url} className="navigation-item offcanvas-item fw-bold text-primary text-decoration-none me-5 mb-5"
-                                            onClick={() => setShow(false)} style={({ isActive }) =>
-                                                isActive ? { opacity: '100%' } : { opacity: '50%' }}>
-                                            <FontAwesomeIcon icon={item.icon} className='me-3' />
-                                            {item.text}
-                                        </NavLink>
-                                    );
-                                }) : sidebarItems.map((section) => {
-                                    return section.links.map((item, index) => {
-                                        return (
-                                            <NavLink key={index} to={item.url} className="navigation-item offcanvas-item fw-bold text-primary text-decoration-none me-5 mb-5"
-                                                onClick={() => setShow(false)} style={({ isActive }) =>
-                                                    isActive ? { opacity: '100%' } : { opacity: '50%' }}>
-                                                <FontAwesomeIcon icon={item.icon} className='me-3' />
-                                                {item.label}
-                                            </NavLink>
-                                        );
-                                    })
-                                })
+                                <NavigationLinks variant="menu" items={navbarItems} onHide={() => setShow(false)} /> :
+                                <NavigationLinks variant="menu" items={sidebarItems} onHide={() => setShow(false)} />
                             }
                         </div>
                     </Nav>
