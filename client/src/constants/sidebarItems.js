@@ -1,5 +1,25 @@
+/*
+ * ------------------------ sidebarItems -------------------------------
+ * 
+ * Package:         client
+ * Module:          constants
+ * File:            sidebarItems.js
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-15
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
+
 import { faRocket, faBook, faGraduationCap, faUserAstronaut, faGear } from '@fortawesome/free-solid-svg-icons';
 
+// Logged in Sidebar navigation links definition
+// -- Exported
 const sidebarItems = [
     {
         section: 'Core', links: [

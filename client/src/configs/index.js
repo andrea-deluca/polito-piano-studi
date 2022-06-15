@@ -16,4 +16,5 @@
  */
 
 import motionConfig from './motion.config';
-export { motionConfig }
+import notificationConfig from './notification.config';
+export { motionConfig, notificationConfig }

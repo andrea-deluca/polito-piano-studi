@@ -8,8 +8,6 @@ import { useSession } from '../hooks';
 const Dashboard = () => {
     const session = useSession();
 
-    console.log(session)
-
     return (
         <>
             <div className='mb-5'>

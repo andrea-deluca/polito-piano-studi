@@ -1,11 +1,27 @@
+/*
+ * ------------------------ LoginSchema -------------------------------
+ * 
+ * Package:         client
+ * Module:          validations
+ * File:            LoginSchema.js
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import * as Yup from 'yup';
-import YupPassword from 'yup-password';
 
-YupPassword(Yup);
-
+// LoginSchema validation
+// -- Exported
 const LoginSchema = Yup.object().shape({
     username: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().password().required('Required'),
+    password: Yup.string().required('Required'),
 });
 
 export default LoginSchema;

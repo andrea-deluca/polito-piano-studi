@@ -19,7 +19,7 @@ const Explore = () => {
     if (courses.length)
         return (
             <Row className='p-3 h-100'>
-                <Col xs={{ span: 12 }} className="mb-5">
+                <Col xs={{ span: 12 }} className="mb-5 mx-auto">
                     <h1 className='text-primary fw-bold'>Esplora</h1>
                     <p className='mt-4 fw-extralight text-muted'>Inizia a dare un'occhiata ai corsi offerti per essere pronto quando dovrai creare il tuo piano di studi.</p>
                 </Col>
@@ -27,7 +27,6 @@ const Explore = () => {
                     <Col xs={{ span: 12 }} className="mx-auto mb-5">
                         <div className='d-flex justify-content-between'>
                             <h3 className='fw-semibold text-primary'>Tutti i corsi offerti</h3>
-                            <Button variant='link' size='sm' className='text-secondary text-decoration-none p-0'>Vedi tutte</Button>
                         </div>
                         <CoursesList expandable courses={courses} />
                     </Col>
