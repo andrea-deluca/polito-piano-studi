@@ -1,3 +1,20 @@
+/*
+ * ------------------------ bootstrap ----------------------------------
+ * 
+ * Package:         client
+ * Module:          scss
+ * File:            _bootstrap.scss
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 // Toggle global options
 // $enable-gradients: true;
 // $enable-shadows: true;
@@ -93,7 +110,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
     color: $light !important;
 }
 
-// Link
+// Links
 
 .link-dark {
     color: $dark;
@@ -124,6 +141,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 .h-0 {
     height: 0px !important;
 }
+
+// Accordion
 
 .accordion-button {
     background-color: white !important;

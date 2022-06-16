@@ -1,29 +1,54 @@
+/*
+ * ------------------------ EditPlan ----------------------------------
+ * 
+ * Package:         client
+ * Module:          pages
+ * File:            EditPlan.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 
 import { api } from "../services";
 import { useNotification, useSession } from "../hooks";
-
 import { date } from "../helpers";
 
 import { UI } from "../components";
 
+// EditPlan page
+// -- Exported
 const EditPlan = () => {
-    const session = useSession();
-    const notify = useNotification();
-    const navigate = useNavigate();
-    const [credits, setCredits] = useState(session.plan.totCredits);
-    const [planCourses, setPlanCourses] = useState(session.plan.courses);
+    const session = useSession(); // Session handler
+    const notify = useNotification(); // Notification handler
+    const navigate = useNavigate(); // Navigation handler
+    const [credits, setCredits] = useState(session.plan ? session.plan.totCredits : null); // Updated value of credits
+    const [planCourses, setPlanCourses] = useState(session.plan ? session.plan.courses : null); // Updated list of plan courses
 
+    // Click on Save button handler
     const handleSubmit = () => {
+        // Checks min credits according to the plan type
         if (credits < session.plan.type.min)
             notify.error(`Un piano di studio ${session.plan.type.name} deve avere almeno ${session.plan.type.min} crediti`);
+        // Checks max credits according to the plan type
         else if (credits > session.plan.type.max)
             notify.error(`Un piano di studio ${session.plan.type.name} deve avere al più ${session.plan.type.max} crediti`);
+        // Checks if a plan already exists into the db, so if the server found and sent back 
+        // an id for the study plan of the logged in user
         else if (session.plan.id) {
+            // If it exists, updates it
             const updates = {
                 deletes: session.plan.courses.filter(oldCourse => !planCourses.includes(oldCourse)),
                 inserts: planCourses.filter(newCourse => !session.plan.courses.includes(newCourse)),
@@ -36,6 +61,8 @@ const EditPlan = () => {
                 })
                 .catch(err => notify.error(err))
         } else
+            // Else, creates a new entry for the study plan of the logged in user
+            // and add courses into the courses list associated with the plan
             api.plans.createStudyPlan(planCourses, { type: session.plan.type.id, credits: credits, createDate: session.plan.createDate, updateDate: date.now() })
                 .then(() => {
                     notify.success("Piano di studio inserito correttamente");
@@ -45,6 +72,7 @@ const EditPlan = () => {
                 .catch(err => notify.error(err))
     }
 
+    // Click on Reset button handler
     const reset = () => {
         setCredits(session.plan.totCredits);
         setPlanCourses(session.plan.courses);

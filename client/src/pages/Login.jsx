@@ -1,7 +1,26 @@
+/*
+ * ------------------------ Login --------------------------------------
+ * 
+ * Package:         client
+ * Module:          pages
+ * File:            Login.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { Row, Col } from 'react-bootstrap';
 
 import { Forms } from '../components';
 
+// Login page
+// -- Exported
 const Login = () => {
     return (
         <Row className='align-items-center flex-fill p-3 h-100'>

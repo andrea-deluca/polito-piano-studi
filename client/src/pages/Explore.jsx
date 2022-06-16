@@ -1,15 +1,36 @@
+/*
+ * ------------------------ Explore ------------------------------------
+ * 
+ * Package:         client
+ * Module:          pages
+ * File:            Explore.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useState, useEffect } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
 
-import { useNotification } from '../hooks';
+import { Row, Col } from 'react-bootstrap';
+
 import { api } from '../services';
+import { useNotification } from '../hooks';
 
-import CoursesList from '../components/ui-core/CoursesList';
+import { UI } from '../components';
 
+// Explore page
+// -- Exported
 const Explore = () => {
-    const [courses, setCourses] = useState([]);
-    const notify = useNotification();
+    const [courses, setCourses] = useState([]); // State to store all courses when API call resolved
+    const notify = useNotification(); // Notification handler
 
+    // Gets all courses
     useEffect(() => {
         api.courses.retrieveAll()
             .then(courses => setCourses(courses))
@@ -25,20 +46,14 @@ const Explore = () => {
                 </Col>
                 <Col xs={{ span: 12 }}>
                     <Col xs={{ span: 12 }} className="mx-auto mb-5">
-                        <div className='d-flex justify-content-between'>
+                        <div className='d-flex justify-content-between mb-5'>
                             <h3 className='fw-semibold text-primary'>Tutti i corsi offerti</h3>
                         </div>
-                        <CoursesList expandable courses={courses} />
+                        <UI.CoursesList expandable courses={courses} />
                     </Col>
                 </Col>
             </Row >
         );
-
-    return (
-        <div>
-            loading...
-        </div>
-    )
 }
 
 export default Explore;

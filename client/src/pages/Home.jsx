@@ -1,9 +1,28 @@
+/*
+ * ------------------------ Home ---------------------------------------
+ * 
+ * Package:         client
+ * Module:          pages
+ * File:            Home.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { Link } from 'react-router-dom';
 
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket, faSignature } from '@fortawesome/free-solid-svg-icons';
 
+// Home page
+// -- Exported
 const Home = () => {
     return (
         <Row className='align-items-center h-100'>

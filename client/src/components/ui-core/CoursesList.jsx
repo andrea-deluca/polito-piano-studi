@@ -45,7 +45,7 @@ const CoursesList = ({ courses }) => {
         );
 
     return (
-        <Accordion alwaysOpen className='my-5'>
+        <Accordion alwaysOpen>
             {courses.map((course, index) => {
                 return <ExpandableCourse key={index} eventKey={index} course={course} />
             })}

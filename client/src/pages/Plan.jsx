@@ -1,23 +1,46 @@
+/*
+ * ------------------------ Plan ---------------------------------------
+ * 
+ * Package:         client
+ * Module:          pages
+ * File:            Plan.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+
+import { Button, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrash, faFileCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 
-import { useConfirm, useNotification, useSession } from "../hooks";
-
-import { UI } from "../components";
 import { api } from "../services";
-
+import { useConfirm, useNotification, useSession } from "../hooks";
 import { date } from "../helpers";
 
+import { UI } from "../components";
+
+// Plan page
+// -- Exported
 const Plan = () => {
-    const [courses, setCourses] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const notify = useNotification();
-    const session = useSession();
-    const [modal, setModal] = useConfirm(() => {
+    const [courses, setCourses] = useState([]); // State to store all courses
+    const [loading, setLoading] = useState(false); // Set while waitting for server response
+    const notify = useNotification(); // Notification handler
+    const session = useSession(); // Session handler
+
+    // On confirm, deletes the study plan associated with the logged in user
+    const [modal, setModal] = useConfirm(() => { // Confirmation handler
         setLoading(true);
+        // If a study plan associated with the logged in user exists into the db, 
+        // so if the server found and sent back an id for it, perfoms API call 
         if (session.plan.id)
             api.plans.deleteStudyPlan(session.plan.list)
                 .then(() => {
@@ -26,6 +49,8 @@ const Plan = () => {
                 })
                 .catch(err => notify.error(err))
                 .finally(() => setLoading(false));
+        // Else, deletes the local study plan from the client session,
+        // without saving it into the db
         else {
             session.deleteLocalPlan();
             setLoading(false);
@@ -33,6 +58,7 @@ const Plan = () => {
         }
     });
 
+    // Gets all courses
     useEffect(() => {
         api.courses.retrieveAll()
             .then(courses => setCourses(courses))
@@ -40,7 +66,7 @@ const Plan = () => {
 
     if (session.plan)
         return (
-            <>
+            <Row>
                 <UI.ConfirmationModal show={modal} onHide={setModal.onHide} onConfirm={setModal.onConfirm} loading={loading} />
                 <div className="d-md-flex justify-content-between align-items-start mb-5">
                     <div className='text-primary'>
@@ -61,7 +87,7 @@ const Plan = () => {
                         </Button>
                     </div>
                 </div>
-                <div className="mb-5 text-primary">
+                <div className="mb-4 text-primary">
                     <div className="mb-4">
                         <h6 className=''>Tipologia del piano di studio</h6>
                         <h6 className='fw-bold'>{session.plan.type.name}</h6>
@@ -72,10 +98,9 @@ const Plan = () => {
                     </div>
                 </div>
                 <UI.CoursesList expandable courses={courses.filter(course => session.plan.courses.includes(course.code))} />
-            </>
+            </Row>
         );
-
-    return (
+    else return (
         <div className='text-primary d-flex align-items-center justify-content-center py-5'>
             <FontAwesomeIcon icon={faFileCircleQuestion} size='5x' className="me-4" />
             <div className="lh-1">

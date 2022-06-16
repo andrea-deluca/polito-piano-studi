@@ -1,15 +1,29 @@
+/*
+ * ------------------------ Signup -------------------------------------
+ * 
+ * Package:         client
+ * Module:          pages
+ * File:            Signup.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { Link } from 'react-router-dom'
 
-import { Row, Col, Button } from "react-bootstrap";
 import { AnimatePresence } from 'framer-motion';
+import { Row, Col, Button } from "react-bootstrap";
 
-import { signupSteps } from "../constants";
 import { useStepper } from "../hooks";
+import { signupSteps } from "../constants";
 
-import { Utils } from "../components";
-
-import { Forms } from "../components";
-import { UI } from "../components";
+import { Utils, Forms, UI } from "../components";
 
 const SignupCompleted = () => {
     return (

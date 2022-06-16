@@ -1,8 +1,28 @@
+/*
+ * ------------------------ NotFound -----------------------------------
+ * 
+ * Package:         client
+ * Module:          pages
+ * File:            NotFound.jsx
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-16
+ * 
+ * Used in:         
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
 import { Link } from "react-router-dom";
+
 import { Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCircleQuestion, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
+// NotFound page
+// -- Exported
 const NotFound = () => {
     return (
         <Row className="align-items-center h-100">
