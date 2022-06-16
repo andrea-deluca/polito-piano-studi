@@ -27,6 +27,7 @@ const { validationResult } = require('express-validator');
 const courseModel = require('../models/course.model');
 const planModel = require('../models/study-plan.model');
 const listModel = require('../models/courses-list.model');
+const planTypeModel = require('../models/study-plan-type.model');
 
 const { withAuth } = require('../middlewares/session');
 
@@ -41,7 +42,7 @@ router.get('/', withAuth, (req, res) => {
 })
 
 router.get('/type-options', withAuth, (req, res) => {
-    planModel.getStudyPlanOptions()
+    planTypeModel.getStudyPlanOptions()
         .then(options => res.status(200).json(options))
         .catch(err => res.status(err.statusCode).json({ message: err.message }));
 })

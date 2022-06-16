@@ -20,7 +20,7 @@ import axios from "axios";
 const plans = {
     getStudyPlan: () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/plans')
+            axios.get('/api/study-plans')
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message))
         })
@@ -28,7 +28,7 @@ const plans = {
 
     getStudyPlanOptions: () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/plans/type-options')
+            axios.get('/api/study-plans/type-options')
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message));
         })
@@ -36,7 +36,7 @@ const plans = {
 
     createStudyPlan: (courses, plan) => {
         return new Promise((resolve, reject) => {
-            axios.post('/api/plans', { courses, plan })
+            axios.post('/api/study-plans', { courses, plan })
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })
@@ -44,7 +44,7 @@ const plans = {
 
     updateStudyPlan: (list, updates, credits, updateDate) => {
         return new Promise((resolve, reject) => {
-            axios.put(`/api/plans/courses-list/${list}`, { updates, credits, updateDate })
+            axios.put(`/api/study-plans/courses-list/${list}`, { updates, credits, updateDate })
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })
@@ -52,7 +52,7 @@ const plans = {
 
     deleteStudyPlan: (list) => {
         return new Promise((resolve, reject) => {
-            axios.delete(`/api/plans/courses-list/${list}`)
+            axios.delete(`/api/study-plans/courses-list/${list}`)
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })

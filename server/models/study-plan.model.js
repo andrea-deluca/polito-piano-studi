@@ -67,17 +67,6 @@ exports.updateStudyPlan = (user, credits, updateDate) => {
     })
 }
 
-exports.getStudyPlanOptions = () => {
-    return new Promise((resolve, reject) => {
-        const query = 'SELECT * FROM study_plan_types';
-        db.all(query, [], (err, rows) => {
-            if (err) reject(new createError.InternalServerError('Error while getting plan options'));
-            if (rows.length === 0) reject(new createError.NotFound('Options not found'));
-            else resolve(rows);
-        })
-    })
-}
-
 exports.deleteStudyPlan = (user) => {
     return new Promise((resolve, reject) => {
         const query = 'DELETE FROM study_plans WHERE user_id = ?';

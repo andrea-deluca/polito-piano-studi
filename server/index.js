@@ -61,7 +61,7 @@ app.use(passport.session());
 // Setting up server routers
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/courses", coursesRouter);
-app.use("/api/plans", plansRouter);
+app.use("/api/study-plans", plansRouter);
 
 // activate the server
 app.listen(PORT, () => {
