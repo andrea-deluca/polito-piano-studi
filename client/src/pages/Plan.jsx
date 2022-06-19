@@ -6,7 +6,7 @@
  * File:            Plan.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-16
+ * Last modified:   2022-06-20
  * 
  * Used in:         
  * 
@@ -42,7 +42,7 @@ const Plan = () => {
         // If a study plan associated with the logged in user exists into the db, 
         // so if the server found and sent back an id for it, perfoms API call 
         if (session.plan.id)
-            api.plans.deleteStudyPlan(session.plan.list)
+            api.plans.deleteStudyPlan(session.plan.id)
                 .then(() => {
                     notify.success("Piano di studio eliminato correttamente");
                     session.updatePlanInfo();

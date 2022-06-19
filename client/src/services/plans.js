@@ -6,7 +6,7 @@
  * File:            plans.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-20
  * 
  * Used in:         
  * 
@@ -28,7 +28,7 @@ const plans = {
 
     getStudyPlanOptions: () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/study-plans/type-options')
+            axios.get('/api/study-plans/types')
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message));
         })
@@ -42,17 +42,17 @@ const plans = {
         })
     },
 
-    updateStudyPlan: (list, updates, credits, updateDate) => {
+    updateStudyPlan: (id, updates, plan) => {
         return new Promise((resolve, reject) => {
-            axios.put(`/api/study-plans/courses-list/${list}`, { updates, credits, updateDate })
+            axios.put(`/api/study-plans/${id}`, { updates, plan })
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })
     },
 
-    deleteStudyPlan: (list) => {
+    deleteStudyPlan: (id) => {
         return new Promise((resolve, reject) => {
-            axios.delete(`/api/study-plans/courses-list/${list}`)
+            axios.delete(`/api/study-plans/${id}`)
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })

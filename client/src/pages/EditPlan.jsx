@@ -6,7 +6,7 @@
  * File:            EditPlan.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-16
+ * Last modified:   2022-06-20
  * 
  * Used in:         
  * 
@@ -53,7 +53,7 @@ const EditPlan = () => {
                 deletes: session.plan.courses.filter(oldCourse => !planCourses.includes(oldCourse)),
                 inserts: planCourses.filter(newCourse => !session.plan.courses.includes(newCourse)),
             }
-            api.plans.updateStudyPlan(session.plan.list, updates, credits, date.now())
+            api.plans.updateStudyPlan(session.plan.id, updates, { type: session.plan.type.id, credits: credits, updateDate: date.now() })
                 .then(() => {
                     notify.success("Piano di studio modificato correttamente");
                     session.updatePlanInfo();

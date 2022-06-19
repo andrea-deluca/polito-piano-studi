@@ -43,7 +43,7 @@ exports.createCoursesList = (courses) => {
     })
 }
 
-exports.updateCoursesList = (list, updates) => {
+exports.updateCoursesList = async (list, updates) => {
     return new Promise((resolve, reject) => {
         const queryDelete = 'DELETE FROM courses_lists WHERE id = ? and course_code = ?';
         const queryInsert = 'INSERT INTO courses_lists (id, course_code) VALUES (?, ?)';
@@ -51,18 +51,19 @@ exports.updateCoursesList = (list, updates) => {
         const deleteStmt = db.prepare(queryDelete);
         const insertStmt = db.prepare(queryInsert);
 
-        updates.deletes.forEach(courseToDelete => {
-            deleteStmt.run([list, courseToDelete], (err) => {
-                if (err) return reject(new createError.InternalServerError('Error while updating courses list'));
+        db.serialize(() => {
+            updates.deletes.forEach(courseToDelete => {
+                deleteStmt.run([list, courseToDelete], (err) => {
+                    if (err) return reject(new createError.InternalServerError(err.message));
+                })
+            })
+
+            updates.inserts.map(courseToInsert => {
+                insertStmt.run([list, courseToInsert], function (err) {
+                    if (err) return reject(new createError.InternalServerError(err.message));
+                })
             })
         })
-
-        updates.inserts.forEach(courseToInsert => {
-            insertStmt.run([list, courseToInsert], (err) => {
-                if (err) return reject(new createError.InternalServerError('Error while updating courses list'));
-            })
-
-        });
 
         resolve();
     })

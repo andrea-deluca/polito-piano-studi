@@ -6,7 +6,7 @@
  * File:            study-plan.model.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-20
  * 
  * Used in:         
  * 
@@ -25,8 +25,8 @@ exports.getStudyPlan = (user) => {
     return new Promise((resolve, reject) => {
         const query = `
             SELECT P.id, P.tot_credits as totCredits, P.list_id as listId, 
-            P.create_timestamp as createDate, P.last_update_timestamp as updateDate, T.name as typeName,
-            T.min_credits as minCredits, T.max_credits as maxCredits, C.course_code as course
+                P.create_timestamp as createDate, P.last_update_timestamp as updateDate, T.id as typeId, T.name as typeName,
+                T.min_credits as minCredits, T.max_credits as maxCredits, C.course_code as course
             FROM study_plans as P, study_plan_types as T, courses_lists as C 
             WHERE P.type_id = T.id and P.list_id = C.id and P.user_id = ?`;
 
@@ -37,11 +37,22 @@ exports.getStudyPlan = (user) => {
                 id: rows[0].id,
                 list: rows[0].listId,
                 totCredits: rows[0].totCredits,
-                type: { name: rows[0].typeName, min: rows[0].minCredits, max: rows[0].maxCredits },
+                type: { id: rows[0].typeId, name: rows[0].typeName, min: rows[0].minCredits, max: rows[0].maxCredits },
                 createDate: rows[0].createDate,
                 updateDate: rows[0].updateDate,
                 courses: rows.map(row => row.course)
             });
+        })
+    })
+}
+
+exports.getListIdByUser = (user) => {
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT list_id FROM study_plans WHERE user_id = ?';
+        db.get(query, [user], (err, row) => {
+            if (err) reject(new createError.InternalServerError(err.message));
+            else if (!row) reject(new createError.NotFound('No study plans asoociated with the user'));
+            else resolve(row.list_id);
         })
     })
 }
@@ -57,20 +68,20 @@ exports.createStudyPlan = (user, plan) => {
     })
 }
 
-exports.updateStudyPlan = (user, credits, updateDate) => {
+exports.updateStudyPlan = (id, user, plan) => {
     return new Promise((resolve, reject) => {
-        const query = 'UPDATE study_plans SET tot_credits = ?, last_update_timestamp = ? WHERE user_id = ?';
-        db.run(query, [credits, updateDate, user], (err) => {
+        const query = 'UPDATE study_plans SET tot_credits = ?, last_update_timestamp = ? WHERE id = ? and user_id = ?';
+        db.run(query, [plan.credits, plan.updateDate, id, user], (err) => {
             if (err) reject(new createError.InternalServerError(err.message));
             else resolve();
         })
     })
 }
 
-exports.deleteStudyPlan = (user) => {
+exports.deleteStudyPlan = (id, user) => {
     return new Promise((resolve, reject) => {
-        const query = 'DELETE FROM study_plans WHERE user_id = ?';
-        db.run(query, [user], function (err) {
+        const query = 'DELETE FROM study_plans WHERE id = ? and user_id = ?';
+        db.run(query, [id, user], function (err) {
             if (err) reject(new createError.InternalServerError('Error while deleting study plan'));
             else resolve();
         })

@@ -31,9 +31,10 @@ const passport = require('passport');
 const authentication = require('./middlewares/session');
 
 // Import routers
-const sessionRoutes = require('./routes/sessions');
+const sessionsRouter = require('./routes/sessions');
 const coursesRouter = require('./routes/courses');
-const plansRouter = require('./routes/plans');
+const studyPlansRouter = require('./routes/study-plans');
+const studyPlanTypesRouter = require('./routes/study-plan-types');
 
 // Authentication functionalities initialization
 authentication.useLocal();
@@ -59,9 +60,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Setting up server routers
-app.use("/api/sessions", sessionRoutes);
+app.use("/api/sessions", sessionsRouter);
 app.use("/api/courses", coursesRouter);
-app.use("/api/study-plans", plansRouter);
+app.use("/api/study-plans", studyPlansRouter);
+app.use("/api/study-plans/types", studyPlanTypesRouter);
 
 // activate the server
 app.listen(PORT, () => {
