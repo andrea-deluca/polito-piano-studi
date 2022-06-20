@@ -6,9 +6,7 @@
  * File:            Navbar.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-14
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -36,7 +34,7 @@ const Navigation = () => {
     const handleLogout = () => {
         api.sessions.logout()
             .then(() => {
-                session.logout();
+                session.updateInfo();
             })
     }
 

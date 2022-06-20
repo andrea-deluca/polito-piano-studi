@@ -6,9 +6,7 @@
  * File:            Home.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-16
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -19,7 +17,7 @@ import { Link } from 'react-router-dom';
 
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightToBracket, faSignature } from '@fortawesome/free-solid-svg-icons';
+import { faRightToBracket, faBook } from '@fortawesome/free-solid-svg-icons';
 
 // Home page
 // -- Exported
@@ -36,16 +34,16 @@ const Home = () => {
                     </h3>
                 </div>
                 <ButtonGroup>
-                    <Link to={"/login"}>
+                    <Link to={"/esplora"}>
                         <Button variant='primary' size='lg' className='px-5 p-3 rounded-3 me-4'>
-                            <FontAwesomeIcon icon={faRightToBracket} className="me-3" />
-                            Login
+                            <FontAwesomeIcon icon={faBook} className="me-3" />
+                            Esplora
                         </Button>
                     </Link>
-                    <Link to={"/signup"}>
+                    <Link to={"/login"}>
                         <Button variant='accent' size='lg' className='px-5 p-3 rounded-3'>
-                            <FontAwesomeIcon icon={faSignature} className="me-3" />
-                            Signup
+                            <FontAwesomeIcon icon={faRightToBracket} className="me-3" />
+                            Login
                         </Button>
                     </Link>
                 </ButtonGroup>

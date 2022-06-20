@@ -6,9 +6,7 @@
  * File:            Login.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-16
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -26,7 +24,7 @@ const Login = () => {
         <Row className='align-items-center flex-fill p-3 h-100'>
             <Col xs={{ span: 12 }} md={{ span: 10 }} xl={{ span: 6 }} className="mx-auto">
                 <h1 className='fw-bold text-primary'>Login</h1>
-                <p className='mt-4 fw-extralight text-muted'>Inserisci il tuo indirizzo email e la tua password per accedere.</p>
+                <p className='mt-4 mb-5 fw-extralight text-muted'>Inserisci il tuo indirizzo email e la tua password per accedere.</p>
                 <Forms.LoginForm />
             </Col>
         </Row>

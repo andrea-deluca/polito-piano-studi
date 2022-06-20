@@ -6,9 +6,7 @@
  * File:            Plan.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-20
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -77,7 +75,7 @@ const Plan = () => {
                         </small>
                     </div>
                     <div>
-                        <Link to='/plan/edit' className="text-decoration-none px-4">
+                        <Link to='/study-plan/edit' className="text-decoration-none px-4">
                             <FontAwesomeIcon icon={faPencil} className='me-3' />
                             <span>Modifica</span>
                         </Link>

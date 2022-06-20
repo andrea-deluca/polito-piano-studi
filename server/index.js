@@ -5,7 +5,7 @@
  * File:            index.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
+ * Last modified:   2022-06-20
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -13,12 +13,6 @@
  */
 
 'use strict';
-
-// If the server is not in production, configures usage of
-// .env file for environment variables
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
 
 // Import modules
 const express = require('express');
@@ -42,7 +36,7 @@ authentication.serializeUser();
 authentication.deserializeUser();
 
 // Setting up the used port for the server
-const PORT = process.env.PORT || 9000;
+const PORT = 9000;
 
 // init express
 const app = new express();
@@ -52,7 +46,7 @@ app.use(logger('dev'));
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json());
 app.use(session({
-  secret: "secret",
+  secret: "2ayh4mTQvRs4@NAu",
   resave: false,
   saveUninitialized: false
 }))

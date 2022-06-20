@@ -6,9 +6,7 @@
  * File:            plans.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-20
- * 
- * Used in:         
+ * Last modified:   2022-06-21      
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -34,9 +32,9 @@ const plans = {
         })
     },
 
-    createStudyPlan: (courses, plan) => {
+    createStudyPlan: (updates, plan) => {
         return new Promise((resolve, reject) => {
-            axios.post('/api/study-plans', { courses, plan })
+            axios.post('/api/study-plans', { updates, plan })
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })

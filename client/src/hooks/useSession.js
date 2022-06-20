@@ -6,9 +6,7 @@
  * File:            useSession.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-15
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -21,16 +19,6 @@ import { SessionContext } from "../contexts/SessionContext";
 // useSession hook
 const useSession = () => {
     const [session, setSession] = useContext(SessionContext); // Session context
-
-    // Set user and plan data as dirty, so an update is needed
-    const login = () => {
-        setSession.setDirty(({ user: true, plan: true }));
-    }
-
-    // Set user and plan data as dirty, so an update is needed
-    const logout = () => {
-        setSession.setDirty(({ user: true, plan: true }));
-    }
 
     // Set user and plan data as dirty, so an update is needed
     const updateInfo = () => {
@@ -52,7 +40,7 @@ const useSession = () => {
         setSession.setData((old) => ({ ...old, plan: null }))
     }
 
-    return { ...session, login, logout, updateInfo, updatePlanInfo, createLocalPlan, deleteLocalPlan };
+    return { ...session, updateInfo, updatePlanInfo, createLocalPlan, deleteLocalPlan };
 }
 
 export default useSession;

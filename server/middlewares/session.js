@@ -6,9 +6,7 @@
  * File:            session.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-08
- * 
- * Used in:         
+ * Last modified:   2022-06-20
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -43,16 +41,17 @@ exports.useLocal = () => passport.use(new LocalStrategy(function verify(username
                 // If the given password does not match with the one within the DB
                 // return an error.
                 if (!crypto.timingSafeEqual(user.password, hashedPassword))
-                    return done(new createError.Unauthorized("Nope! Password non corretta... prova di nuovo."));
+                    return done(new createError.Unauthorized("Username e/o password errati!"));
 
                 // If it's all right, the user is logged in
-                return done(null, { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, activeStatus: user.active_status });
+                return done(null, { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email });
             });
         })
         .catch(err => {
             // An error occurs with getting the user from the DB.
             // In particular, it can be an Internal Server Error 
             // or a Not Found Error, if there is no user with the given email.
+            if (err.statusCode === 404) return done(new createError.Unauthorized("Username e/o password errati!"));
             return done(err)
         })
 }));
@@ -66,7 +65,7 @@ exports.serializeUser = () => passport.serializeUser((user, done) => {
 exports.deserializeUser = () => passport.deserializeUser((user, done) => {
     userModel.getUserById(user.id)
         .then(user => {
-            return done(null, { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, activeStatus: user.active_status });
+            return done(null, { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email });
         })
         .catch(err => {
             return done(err, null);

@@ -6,9 +6,7 @@
  * File:            NotFound.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-16
- * 
- * Used in:         
+ * Last modified:   2022-06-21  
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -35,7 +33,7 @@ const NotFound = () => {
                     <Link to={"/"} replace className="mt-5">
                         <Button variant="gray" className="rounded-3">
                             <FontAwesomeIcon icon={faAngleLeft} className="me-3" />
-                            Back to home
+                            Torna alla home
                         </Button>
                     </Link>
                 </div>

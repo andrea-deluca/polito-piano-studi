@@ -6,9 +6,7 @@
  * File:            index.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-14
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -28,8 +26,6 @@ import NavigationLinks from "./NavigationLinks";
 import OptionModal from "./OptionModal";
 import SelectableCoursesList from "./SelectableCoursesList";
 import Sidebar from "./Sidebar";
-import StaticModal from "./StaticModal";
-import Stepper from "./Stepper";
 import UserBadge from "./UserBadge";
 
 export {
@@ -46,7 +42,5 @@ export {
     OptionModal,
     SelectableCoursesList,
     Sidebar,
-    StaticModal,
-    Stepper,
     UserBadge,
 }

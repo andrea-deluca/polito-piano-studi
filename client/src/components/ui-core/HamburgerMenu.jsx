@@ -6,9 +6,7 @@
  * File:            HamburgerMenu.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-14
- * 
- * Used in:         components/ui-core/Navbar
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -16,7 +14,6 @@
  */
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 import { Button, Offcanvas, Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,7 +23,6 @@ import { api } from "../../services";
 import { useSession } from "../../hooks";
 import { navbarItems, sidebarItems } from "../../constants";
 
-import AnimatedCard from "./AnimatedCard";
 import NavigationLinks from "./NavigationLinks";
 
 // HamburgerMenu component
@@ -39,7 +35,7 @@ const HamburgerMenu = () => {
     const handleLogout = () => {
         api.sessions.logout()
             .then(() => {
-                session.logout();
+                session.updateInfo();
             })
     }
 
@@ -64,13 +60,7 @@ const HamburgerMenu = () => {
                             }
                         </div>
                     </Nav>
-                    {!session.loggedIn ?
-                        <Link to='/signup' className="text-decoration-none">
-                            <AnimatedCard title={"Non hai un account? Reigistrati ora"} height={200}>
-                                Ci vuole solo un attimo... Una volta completata la registrazione, avrai la possibilità
-                                di accedere e creare il tuo piano di studio.
-                            </AnimatedCard>
-                        </Link> :
+                    {session.loggedIn &&
                         <Button variant='secondary' className='d-flex align-items-center rounded-3 p-3 w-100' onClick={handleLogout}>
                             <FontAwesomeIcon icon={faArrowRightFromBracket} className='me-4' />
                             <small>Logout</small>

@@ -6,9 +6,7 @@
  * File:            EditPlan.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-20
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -58,12 +56,13 @@ const EditPlan = () => {
                     notify.success("Piano di studio modificato correttamente");
                     session.updatePlanInfo();
                     navigate('/plan', { replace: true });
+                    return
                 })
                 .catch(err => notify.error(err))
         } else
             // Else, creates a new entry for the study plan of the logged in user
             // and add courses into the courses list associated with the plan
-            api.plans.createStudyPlan(planCourses, { type: session.plan.type.id, credits: credits, createDate: session.plan.createDate, updateDate: date.now() })
+            api.plans.createStudyPlan({ inserts: planCourses, deletes: [] }, { type: session.plan.type.id, credits: credits, createDate: session.plan.createDate, updateDate: date.now() })
                 .then(() => {
                     notify.success("Piano di studio inserito correttamente");
                     session.updatePlanInfo();

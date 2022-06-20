@@ -5,9 +5,7 @@
  * File:            App.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-15
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -33,13 +31,12 @@ function App() {
             <Route element={<Utils.GuestRoute />}>
               <Route index path="/" element={<Pages.Home />} />
               <Route path="/login" element={<Pages.Login />} />
-              <Route path="/signup" element={<Pages.Signup />} />
             </Route>
-            <Route path="/explore" element={<Pages.Explore />} />
+            <Route path="/esplora" element={<Pages.Explore />} />
             <Route element={<Utils.ProtectedRoute />}>
               <Route path="/dashboard" element={<Pages.Dashboard />} />
-              <Route path="/plan" element={<Pages.Plan />} />
-              <Route path="/plan/edit" element={<Pages.EditPlan />} />
+              <Route path="/study-plan" element={<Pages.Plan />} />
+              <Route path="/study-plan/edit" element={<Pages.EditPlan />} />
             </Route>
             <Route path="*" element={<Pages.NotFound />} />
           </Route>

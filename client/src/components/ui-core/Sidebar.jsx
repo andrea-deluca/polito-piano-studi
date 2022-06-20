@@ -6,9 +6,7 @@
  * File:            Sidebar.jsx
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-14
- * 
- * Used in:         
+ * Last modified:   2022-06-21   
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -62,7 +60,7 @@ const Sidebar = ({ show }) => {
     const handleLogout = () => {
         api.sessions.logout()
             .then(() => {
-                session.logout();
+                session.updateInfo();
             })
     }
 
@@ -73,7 +71,7 @@ const Sidebar = ({ show }) => {
         if (!session.plan) setModal(true);
         // Else, if it already exists, simply redirects to the /plan/edit route
         // to edit the study plan
-        else navigate('/plan/edit', { replace: true });
+        else navigate('/study-plan/edit', { replace: true });
     }
 
     return (

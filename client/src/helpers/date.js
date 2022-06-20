@@ -6,9 +6,7 @@
  * File:            date.js
  * 
  * Author:          Andrea Deluca - S303906
- * Last modified:   2022-06-15
- * 
- * Used in:         
+ * Last modified:   2022-06-21
  * 
  * Copyright (c) 2022 - Andrea Deluca
  * All rights reserved.
@@ -22,6 +20,6 @@ import it from 'dayjs/locale/it';
 const now = () => dayjs();
 
 // Return a formatted date, starting from the given timestamp
-const format = (date) => dayjs(date).locale(it).format('DD MMMM YYYY, hh:mm');
+const format = (date) => dayjs(date).locale(it).format('DD MMMM YYYY, HH:mm');
 
 export { now, format };
