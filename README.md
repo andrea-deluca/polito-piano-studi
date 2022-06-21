@@ -2,6 +2,47 @@
 
 ## Student: s303906 DELUCA ANDREA
 
+## Table of Contents
+
+1. [React Client Application Routes](#react-client-application-routes)
+    - [Route `/`](#)
+    - [Route `/login`](#login)
+    - [Route `/explore`](#explore)
+    - [Route `/dashboard`](#dashboard)
+    - [Route `/study-plan`](#study-plan)
+    - [Route `/study-plan/edit`](#study-planedit)
+    - [Route `/*`](#1)
+2. [API Server](#api-server)
+    - [Sessions Routes](#sessions-routes)
+      - [`POST /api/sessions/password`](#post-apisessionspassword)
+      - [`DELETE /api/sessions/current`](#delete-apisessionscurrent)
+      - [`GET /api/sessions/current`](#get-apisessionscurrent)
+    - [Courses Routes](#courses-routes)
+      - [`GET /api/courses/all`](#get-apicoursesall)
+    - [Study Plan Types Routes](#study-plan-types-routes)
+      - [`GET /api/study-plans/types`](#get-apistudy-planstypes)
+    - [Study Plans Routes](#study-plans-routes)
+      - [`GET /api/study-plans`](#get-apistudy-plans)
+      - [`POST /api/study-plans`](#post-apistudy-plans)
+      - [`PUT /api/study-plans/:id`](#put-apistudy-plansid)
+      - [`DELETE /api/study-plans/:id`](#delete-apistudy-plansid)
+3. [Database Tables](#database-tables)
+    - [Table `users`](#users)
+    - [Table `courses`](#courses)
+    - [Table `incompatible_courses`](#incompatiblecourses)
+    - [Table `study_plan_types`](#studyplantypes)
+    - [Table `courses_lists`](#courseslists)
+    - [Table `study_plans`](#studyplans)
+4. [Main React Components](#main-react-components)
+    - [Component `LoginForm`](#loginform)
+    - [Component `CourseHeader`](#courseheader)
+    - [Component `CourseBody`](#coursebody)
+    - [Component `ExpandableCourse`](#expandablecourse)
+    - [Component `CoursesList`](#courseslist)
+    - [Component `OptionModal`](#optionmodal)
+    - [Component `SelectableCourse`](#selectablecourse)
+    - [Component `SelectableCoursesList`](#selectablecourseslist)
+
 ## React Client Application Routes
 
 ### `/`
@@ -18,7 +59,7 @@ Page that contains the login form to perform authentication.
 
 _This route is unprotected from the user authentication. Moreover, it is unreachable when the user is logged in._
 
-### `/esplora`
+### `/explore`
 
 Page that contains the list of all courses offered
 
@@ -42,9 +83,13 @@ Page where the logged in user can edit the list of courses associated with its s
 
 _This route is protected. The user must be authenticated to navigate here._
 
+### `/*`
+
+Any other route is matched by this one where the application shows a page not found error.
+
 ## API Server
 
-### **Session routes**
+### **Sessions Routes**
 
 #### `POST /api/sessions/password`
 
@@ -126,7 +171,7 @@ Gets information about the user, if he is logged in.
 - `HTTP status code 404 Not Found` (user not found error)
 - `HTTP status code 401 Unauthorized` (authentication error)
 
-### **Courses routes**
+### **Courses Routes**
 
 #### `GET /api/courses/all`
 
@@ -140,72 +185,72 @@ Here some examples of course objects returned as response body, with and not pre
 
 ```json
 [
-    {
-        "code": "01UDFOV",
-        "name": "Applicazioni Web I",
-        "credits": 6,
-        "maxStudents": null,
-        "enrolledStudents": 0,
-        "preparatoryCourse": null,
-        "incompatibleCourses": [
-            {
-                "code": "01TXYOV",
-                "name": "Web Applications I"
-            }
-        ]
-    },
-    {
-        "code": "02GOLOV",
-        "name": "Architetture dei sistemi di elaborazione",
-        "credits": 12,
-        "maxStudents": null,
-        "enrolledStudents": 0,
-        "preparatoryCourse": null,
-        "incompatibleCourses": [
-            {
-                "code": "02LSEOV",
-                "name": "Computer architectures"
-            }
-        ]
-    },
-    {
-        "code": "03UEWOV",
-        "name": "Challenge",
-        "credits": 5,
-        "maxStudents": null,
-        "enrolledStudents": 0,
-        "preparatoryCourse": null
-    },
-
-    ...
-
-    {
-        "code": "05BIDOV",
-        "name": "Ingegneria del software",
-        "credits": 6,
-        "maxStudents": null,
-        "enrolledStudents": 0,
-        "preparatoryCourse": {
-            "code": "02GOLOV",
-            "name": "Architetture dei sistemi di elaborazione"
-        },
-        "incompatibleCourses": [
-            {
-                "code": "04GSPOV",
-                "name": "Software engineering"
-            }
-        ]
-    },
-    {
-      "code": "01URSPD",
-      "name": "Internet Video Streaming",
+  {
+      "code": "01UDFOV",
+      "name": "Applicazioni Web I",
       "credits": 6,
-      "maxStudents": 2,
+      "maxStudents": null,
+      "enrolledStudents": 0,
+      "preparatoryCourse": null,
+      "incompatibleCourses": [
+          {
+              "code": "01TXYOV",
+              "name": "Web Applications I"
+          }
+      ]
+  },
+  {
+      "code": "02GOLOV",
+      "name": "Architetture dei sistemi di elaborazione",
+      "credits": 12,
+      "maxStudents": null,
+      "enrolledStudents": 0,
+      "preparatoryCourse": null,
+      "incompatibleCourses": [
+          {
+              "code": "02LSEOV",
+              "name": "Computer architectures"
+          }
+      ]
+  },
+  {
+      "code": "03UEWOV",
+      "name": "Challenge",
+      "credits": 5,
+      "maxStudents": null,
       "enrolledStudents": 0,
       "preparatoryCourse": null
-    },
+  },
 
-    ...
+  ...
+
+  {
+      "code": "05BIDOV",
+      "name": "Ingegneria del software",
+      "credits": 6,
+      "maxStudents": null,
+      "enrolledStudents": 0,
+      "preparatoryCourse": {
+          "code": "02GOLOV",
+          "name": "Architetture dei sistemi di elaborazione"
+      },
+      "incompatibleCourses": [
+          {
+              "code": "04GSPOV",
+              "name": "Software engineering"
+          }
+      ]
+  },
+  {
+    "code": "01URSPD",
+    "name": "Internet Video Streaming",
+    "credits": 6,
+    "maxStudents": 2,
+    "enrolledStudents": 0,
+    "preparatoryCourse": null
+  },
+
+  ...
 
 ]
 ```
@@ -215,7 +260,7 @@ Here some examples of course objects returned as response body, with and not pre
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 404 Not Found` (courses not found error)
 
-### **Study plan types routes**
+### **Study Plan Types Routes**
 
 #### `GET /api/study-plans/types`
 
@@ -252,7 +297,7 @@ Gets information about types that a study plan can take.
 - `HTTP status code 404 Not Found` (study plan types not found error)
 - `HTTP status code 401 Unauthorized` (authentication error)
 
-### **Study plan routes**
+### **Study Plans Routes**
 
 #### `GET /api/study-plans`
 
@@ -303,16 +348,16 @@ A JSON object containing info about the study plan and a list of courses to inse
 
 ```json
 {
-    "updates": {
-      "inserts": ["01UDFOV", "02GOLOV", "03UEWOV"],
-      "deletes": []
-    }
-    "plan": {
-      "type": 2,
-      "credits": 23,
-      "createDate": "2022-06-21T09:19:11.091Z",
-      "updateDate": "2022-06-21T09:25:03.091Z"
-    }
+  "updates": {
+    "inserts": ["01UDFOV", "02GOLOV", "03UEWOV"],
+    "deletes": []
+  }
+  "plan": {
+    "type": 2,
+    "credits": 23,
+    "createDate": "2022-06-21T09:19:11.091Z",
+    "updateDate": "2022-06-21T09:25:03.091Z"
+  }
 }
 ```
 
@@ -343,15 +388,15 @@ A JSON object containing info about the updates for the study plan.
 
 ```json
 {
-    "updates": {
-      "inserts": ["01SQMOV", "01UDUOV"],
-      "deletes": ["03UEWOV"]
-    }
-    "plan": {
-      "type": 2,
-      "credits": 38,
-      "updateDate": "2022-06-23T11:28:03.091Z"
-    }
+  "updates": {
+    "inserts": ["01SQMOV", "01UDUOV"],
+    "deletes": ["03UEWOV"]
+  }
+  "plan": {
+    "type": 2,
+    "credits": 38,
+    "updateDate": "2022-06-23T11:28:03.091Z"
+  }
 }
 ```
 
@@ -429,7 +474,7 @@ incompatible_course (FOREIGN KEY REFERENCES courses(code))
 
 ### `study_plan_types`
 
-It contains info about types that a study plan can take, e.g. Full-time or Part-time.
+It contains info about types that a study plan can take, i.e. Full-time or Part-time.
 
 ```
 id (PRIMARY KEY)
@@ -463,9 +508,58 @@ last_update_timestamp
 
 ## Main React Components
 
-- `ListOfSomething` (in `List.js`): component purpose and main functionality
-- `GreatButton` (in `GreatButton.js`): component purpose and main functionality
-- ...
+### `LoginForm`
+
+`components/forms/LoginForm.jsx`
+
+This component contains the login form that calls the correlated API on submit.
+
+### `CourseHeader`
+
+`components/ui-core/Course.jsx`
+
+This component shows the main info about a course. In particular, it shows the course code, its name, its number of credits, its maximum number of enrolled students, if exists, and the number of enrolled students at the moment.
+
+### `CourseBody`
+
+`components/ui-core/Course.jsx`
+
+This component shows the propedeuticity and incompatibility info about a course.
+
+### `ExpandableCourse`
+
+`components/ui-core/CoursesList.jsx`
+
+This component is a wrapper for the visualization of all course info in an expandable way. In particulr, if it's closed, the component shows just the CourseHeader component, else if it'open, also CourseBody component is shown.
+
+### `CoursesList`
+
+`components/ui-core/CoursesList.jsx`
+
+This component shows a list of ExpandableCourse components, given the array of courses to show.
+
+### `OptionModal`
+
+`components/ui-core/OptionModal.jsx`
+
+When this modal is triggered, it shows info about the study plan types and it allows the user to choose one option to create its study plan locally, without any saving in db.
+
+### `SelectableCourse`
+
+`components/ui-core/SelectableCoursesList.jsx`
+
+This component shows all info about a course, i.e. CourseHeader and CourseBody components, and draws a green border when a course results selected. Moreover, it also can show a course as disabled.
+
+### `SelectableCoursesList`
+
+`components/ui-core/SelectableCoursesList.jsx`
+
+It contains the logic on client-side of the update of a study plan and its correlated list of courses.
+
+This component shows two lists of SelectableCourse components to show the list of courses already inserted into the study plan associated with a user and the list of courses not selected, possibly disabled.
+Moreover, it checks for study plan courses constraints when a course is selected or deselected.
+
+
 
 (only _main_ components, minor ones may be skipped)
 

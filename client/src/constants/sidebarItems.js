@@ -23,7 +23,7 @@ const sidebarItems = [
         section: 'Navigation', links: [
             { label: 'Dashboard', url: '/dashboard', icon: faRocket },
             { label: 'Il mio piano di studio', url: '/study-plan', icon: faGraduationCap },
-            { label: 'Esplora', url: '/esplora', icon: faBook },
+            { label: 'Esplora', url: '/explore', icon: faBook },
         ]
     },
 ];

@@ -19,7 +19,7 @@ import { faBook, faHome, faRightToBracket } from '@fortawesome/free-solid-svg-ic
 // -- Exported
 const navbarItems = [
     { label: "Home", url: "/", icon: faHome },
-    { label: "Esplora", url: "/esplora", icon: faBook },
+    { label: "Esplora", url: "/explore", icon: faBook },
     { label: "Login", url: "/login", icon: faRightToBracket },
 ];
 

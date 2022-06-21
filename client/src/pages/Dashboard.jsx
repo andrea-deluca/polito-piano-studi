@@ -39,7 +39,7 @@ const Dashboard = () => {
                 </UI.AnimatedCard>
             </Col>
             <Col xs={{ span: 12 }} md={{ span: 6 }} xl={{ span: 4 }} className='mb-5 mb-xl-0'>
-                <Link to='/esplora' className='text-decoration-none'>
+                <Link to='/explore' className='text-decoration-none'>
                     <UI.AnimatedCard title={"Vai ad Esplora"} footer={"Visualizza la lista completa dei corsi"} height={300}>
                         Vai ad Esplora per visualizzare la lista completa dei corsi offerti e per prepararti a creare il tuo piano di studio.
                     </UI.AnimatedCard>

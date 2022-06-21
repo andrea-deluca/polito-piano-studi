@@ -32,7 +32,7 @@ function App() {
               <Route index path="/" element={<Pages.Home />} />
               <Route path="/login" element={<Pages.Login />} />
             </Route>
-            <Route path="/esplora" element={<Pages.Explore />} />
+            <Route path="/explore" element={<Pages.Explore />} />
             <Route element={<Utils.ProtectedRoute />}>
               <Route path="/dashboard" element={<Pages.Dashboard />} />
               <Route path="/study-plan" element={<Pages.Plan />} />
