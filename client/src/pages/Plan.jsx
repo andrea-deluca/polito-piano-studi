@@ -85,6 +85,7 @@ const Plan = () => {
                         </Button>
                     </div>
                 </div>
+                <UI.PlanStatusAlert />
                 <div className="mb-4 text-primary">
                     <div className="mb-4">
                         <h6 className=''>Tipologia del piano di studio</h6>

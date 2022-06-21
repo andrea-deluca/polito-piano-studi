@@ -15,10 +15,12 @@
 
 import axios from "axios";
 
+const BASE_URL = 'http://localhost:9000';
+
 const courses = {
     retrieveAll: () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/courses/all')
+            axios.get(`${BASE_URL}/api/courses/all`)
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message))
         })

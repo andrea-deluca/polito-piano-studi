@@ -15,10 +15,12 @@
 
 import axios from 'axios';
 
+const BASE_URL = 'http://localhost:9000';
+
 const sessions = {
     login: (credentials) => {
         return new Promise((resolve, reject) => {
-            axios.post('/api/sessions/password', credentials, { withCredentials: true })
+            axios.post(`${BASE_URL}/api/sessions/password`, credentials, { withCredentials: true })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message))
         })
@@ -26,7 +28,7 @@ const sessions = {
 
     logout: () => {
         return new Promise((resolve, reject) => {
-            axios.delete('/api/sessions/current')
+            axios.delete(`${BASE_URL}/api/sessions/current`, { withCredentials: true })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message))
         })
@@ -34,7 +36,7 @@ const sessions = {
 
     getUserInfo: () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/sessions/current')
+            axios.get(`${BASE_URL}/api/sessions/current`, { withCredentials: true })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message))
         })

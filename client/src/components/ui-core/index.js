@@ -24,6 +24,7 @@ import Input from "./Input";
 import Navbar from "./Navbar";
 import NavigationLinks from "./NavigationLinks";
 import OptionModal from "./OptionModal";
+import PlanStatusAlert from "./PlanStatusAlert";
 import SelectableCoursesList from "./SelectableCoursesList";
 import Sidebar from "./Sidebar";
 import UserBadge from "./UserBadge";
@@ -40,6 +41,7 @@ export {
     Navbar,
     NavigationLinks,
     OptionModal,
+    PlanStatusAlert,
     SelectableCoursesList,
     Sidebar,
     UserBadge,

@@ -15,10 +15,12 @@
 
 import axios from "axios";
 
+const BASE_URL = 'http://localhost:9000';
+
 const plans = {
     getStudyPlan: () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/study-plans')
+            axios.get(`${BASE_URL}/api/study-plans`, { withCredentials: true })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message))
         })
@@ -26,7 +28,7 @@ const plans = {
 
     getStudyPlanOptions: () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/study-plans/types')
+            axios.get(`${BASE_URL}/api/study-plans/types`, { withCredentials: true })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err.response.data.message));
         })
@@ -34,7 +36,7 @@ const plans = {
 
     createStudyPlan: (updates, plan) => {
         return new Promise((resolve, reject) => {
-            axios.post('/api/study-plans', { updates, plan })
+            axios.post(`${BASE_URL}/api/study-plans`, { updates, plan }, { withCredentials: true })
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })
@@ -42,7 +44,7 @@ const plans = {
 
     updateStudyPlan: (id, updates, plan) => {
         return new Promise((resolve, reject) => {
-            axios.put(`/api/study-plans/${id}`, { updates, plan })
+            axios.put(`${BASE_URL}/api/study-plans/${id}`, { updates, plan }, { withCredentials: true })
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })
@@ -50,7 +52,7 @@ const plans = {
 
     deleteStudyPlan: (id) => {
         return new Promise((resolve, reject) => {
-            axios.delete(`/api/study-plans/${id}`)
+            axios.delete(`${BASE_URL}/api/study-plans/${id}`, { withCredentials: true })
                 .then(() => resolve())
                 .catch(err => reject(err.response.data.message));
         })

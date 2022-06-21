@@ -31,7 +31,6 @@
     "yup": "^0.32.11",
     "yup-password": "^0.2.2"
   },
-  "proxy": "http://localhost:9000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -55,7 +55,7 @@ const EditPlan = () => {
                 .then(() => {
                     notify.success("Piano di studio modificato correttamente");
                     session.updatePlanInfo();
-                    navigate('/plan', { replace: true });
+                    navigate('/study-plan', { replace: true });
                     return
                 })
                 .catch(err => notify.error(err))
@@ -66,7 +66,7 @@ const EditPlan = () => {
                 .then(() => {
                     notify.success("Piano di studio inserito correttamente");
                     session.updatePlanInfo();
-                    navigate('/plan', { replace: true });
+                    navigate('/study-plan', { replace: true });
                 })
                 .catch(err => notify.error(err))
     }
@@ -81,7 +81,19 @@ const EditPlan = () => {
         return (
             <>
                 <div className="d-flex justify-content-between">
-                    <h3 className='text-primary fw-bold mb-0'>Modifica piano di studio</h3>
+                    <div>
+                        <h3 className='text-primary fw-bold mb-4'>Modifica piano di studio</h3>
+                        <div className="mb-3">
+                            <h6 className=''>Tipologia del piano di studio</h6>
+                            <h6 className='fw-bold'>{session.plan.type.name}</h6>
+                        </div>
+                        <div className="mb-3">
+                            <h6 className=''>Numero minimo di crediti</h6>
+                            <h6 className='fw-bold'>{session.plan.type.min} CFU</h6>
+                        </div>
+                        <h6 className=''>Numero massimo di crediti</h6>
+                        <h6 className='fw-bold'>{session.plan.type.max} CFU</h6>
+                    </div>
                     <div>
                         <Button variant="gray" size="lg" className="rounded-3 px-5 me-4" onClick={reset}>
                             Reimposta
