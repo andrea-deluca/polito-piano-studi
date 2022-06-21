@@ -44,7 +44,7 @@ _This route is protected. The user must be authenticated to navigate here._
 
 ## API Server
 
-### Session routes
+### **Session routes**
 
 #### `POST /api/sessions/password`
 
@@ -126,7 +126,7 @@ Gets information about the user, if he is logged in.
 - `HTTP status code 404 Not Found` (user not found error)
 - `HTTP status code 401 Unauthorized` (authentication error)
 
-### Courses routes
+### **Courses routes**
 
 #### `GET /api/courses/all`
 
@@ -215,7 +215,7 @@ Here some examples of course objects returned as response body, with and not pre
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 404 Not Found` (courses not found error)
 
-### Study plan types routes
+### **Study plan types routes**
 
 #### `GET /api/study-plans/types`
 
@@ -252,7 +252,7 @@ Gets information about types that a study plan can take.
 - `HTTP status code 404 Not Found` (study plan types not found error)
 - `HTTP status code 401 Unauthorized` (authentication error)
 
-### Study plan routes
+### **Study plan routes**
 
 #### `GET /api/study-plans`
 
@@ -390,7 +390,9 @@ It also updates the number of enrolled students for the courses removed from the
 
 ## Database Tables
 
-- Table `users` - contains info about users, including authentication info
+### `users`
+
+It contains info about users, including authentication info.
 
 ```
 id (PRIMARY KEY)
@@ -401,7 +403,9 @@ password
 salt
 ```
 
-- Table `courses` - contains info about courses offered, including propedeuticity info
+### `courses`
+
+It contains info about courses offered, including propedeuticity info.
 
 ```
 id (PRIMARY KEY)
@@ -413,7 +417,9 @@ enrolled_students
 preparatory_course (FOREIGN KEY REFERENCES courses(code)) - it can be null
 ```
 
-- Table `incompatible_courses` - contains info about incompatible courses
+### `incompatible_courses`
+
+It contains info about incompatible courses.
 
 ```
 id (PRIMARY KEY)
@@ -421,7 +427,9 @@ course_code (FOREIGN KEY REFERENCES courses(code))
 incompatible_course (FOREIGN KEY REFERENCES courses(code))
 ```
 
-- Table `study_plan_types` - contains info about types that a study plan can take, e.g. Full-time or Part-time
+### `study_plan_types`
+
+It contains info about types that a study plan can take, e.g. Full-time or Part-time.
 
 ```
 id (PRIMARY KEY)
@@ -430,14 +438,18 @@ min_credits
 max_credits
 ```
 
-- Table `courses_lists` - contains info about the list of courses associated with a study plan
+### `courses_lists`
+
+It contains info about the list of courses associated with a study plan.
 
 ```
 id (PRIMARY KEY)
 course_code (FOREIGN KEY REFERENCES courses(code))
 ```
 
-- Table `study_plans` - contains info about the list of courses associated with a study plan
+### `study_plans`
+
+It contains info about the list of courses associated with a study plan.
 
 ```
 id (PRIMARY KEY)
