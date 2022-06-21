@@ -50,11 +50,11 @@ _This route is protected. The user must be authenticated to navigate here._
 
 Performs user authentication and create a new session for the user.
 
-##### **Request header:**
+**Request header:**
 
 `Content-Type: application/json`
 
-##### **Request body:**
+**Request body:**
 
 A JSON object containing username and password.
 
@@ -65,7 +65,7 @@ A JSON object containing username and password.
 }
 ```
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
@@ -78,7 +78,7 @@ A JSON object containing username and password.
 }
 ```
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 401 Unauthorized` (credentials error)
@@ -87,15 +87,15 @@ A JSON object containing username and password.
 
 Performs user logout and delete the current user session.
 
-##### **Request header:**
+**Request header:**
 
 `Session: req.user to retrieve the logged in user id`
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 
@@ -103,11 +103,11 @@ Performs user logout and delete the current user session.
 
 Gets information about the user, if he is logged in.
 
-##### **Request header:**
+**Request header:**
 
 `Session: req.user to retrieve the logged in user id`
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
@@ -120,7 +120,7 @@ Gets information about the user, if he is logged in.
 }
 ```
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 404 Not Found` (user not found error)
@@ -132,7 +132,7 @@ Gets information about the user, if he is logged in.
 
 Gets information about courses offered, including incompatibilities info, ordered by name.
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
@@ -210,7 +210,7 @@ Here some examples of course objects returned as response body, with and not pre
 ]
 ```
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 404 Not Found` (courses not found error)
@@ -221,11 +221,11 @@ Here some examples of course objects returned as response body, with and not pre
 
 Gets information about types that a study plan can take.
 
-##### **Request header:**
+**Request header:**
 
 `Session: req.user to retrieve the logged in user id`
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
@@ -246,7 +246,7 @@ Gets information about types that a study plan can take.
 ]
 ```
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 404 Not Found` (study plan types not found error)
@@ -258,11 +258,11 @@ Gets information about types that a study plan can take.
 
 Gets information about the study plan associated with the logged in user, including info about the list of courses correlated to it and info about the study plan type.
 
-##### **Request header:**
+**Request header:**
 
 `Session: req.user to retrieve the logged in user id`
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
@@ -282,7 +282,7 @@ Gets information about the study plan associated with the logged in user, includ
 }
 ```
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 404 Not Found` (study plan not found error)
@@ -293,11 +293,11 @@ Gets information about the study plan associated with the logged in user, includ
 Creates a new study plan entry, that has to be associated with the logged in user, and fills its correlated list of courses.
 It also updates the number of enrolled students for the courses inserted into the study plan.
 
-##### **Request header:**
+**Request header:**
 
 `Session: req.user to retrieve the logged in user id`
 
-##### **Request body:**
+**Request body:**
 
 A JSON object containing info about the study plan and a list of courses to insert into the correlated list.
 
@@ -316,11 +316,11 @@ A JSON object containing info about the study plan and a list of courses to inse
 }
 ```
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 422 Unprocessable Entity` (validation error)
@@ -331,13 +331,13 @@ A JSON object containing info about the study plan and a list of courses to inse
 Updates info about the study plan associated with the logged in user and the list of courses correlated to it, given the study plan id.
 It also updates the number of enrolled students for the courses inserted and removed from the study plan.
 
-##### **Request header:**
+**Request header:**
 
 `Session: req.user to retrieve the logged in user id`
 
 `Params: req.params.id to retrieve study plan id`
 
-##### **Request body:**
+**Request body:**
 
 A JSON object containing info about the updates for the study plan.
 
@@ -355,11 +355,11 @@ A JSON object containing info about the updates for the study plan.
 }
 ```
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 422 Unprocessable Entity` (validation error)
@@ -371,17 +371,17 @@ A JSON object containing info about the updates for the study plan.
 Deletes the study plan associated with the logged in user and the list of courses correlated to it, given the study plan id.
 It also updates the number of enrolled students for the courses removed from the study plan.
 
-##### **Request header:**
+**Request header:**
 
 `Session: req.user to retrieve the logged in user id`
 
 `Params: req.params.id to retrieve study plan id`
 
-##### **Response body**
+**Response body**
 
 `HTTP status code 200 OK`
 
-##### **Error responses**
+**Error responses**
 
 - `HTTP status code 500 Internal Server Error` (generic server error)
 - `HTTP status code 422 Unprocessable Entity` (validation error)
