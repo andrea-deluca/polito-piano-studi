@@ -559,13 +559,9 @@ It contains the logic on client-side of the update of a study plan and its corre
 This component shows two lists of SelectableCourse components to show the list of courses already inserted into the study plan associated with a user and the list of courses not selected, possibly disabled.
 Moreover, it checks for study plan courses constraints when a course is selected or deselected.
 
-
-
-(only _main_ components, minor ones may be skipped)
-
 ## Screenshot
 
-![Screenshot](./img/screenshot.jpg)
+![Screenshot](./img/screenshot.png)
 
 ## Users Credentials
 
