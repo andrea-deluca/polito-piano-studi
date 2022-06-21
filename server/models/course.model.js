@@ -67,7 +67,11 @@ exports.getAllCourses = () => {
 
                         // Builds an array of courses objects with all the info
                         const res = courses.map(course => ({
-                            ...course,
+                            code: course.code,
+                            name: course.name,
+                            credits: course.credits,
+                            maxStudents: course.maxStudents,
+                            enrolledStudents: course.enrolledStudents,
                             preparatoryCourse: course.preparatoryCourse ? {
                                 code: course.preparatoryCourse,
                                 name: course.preparatoryCourseName
