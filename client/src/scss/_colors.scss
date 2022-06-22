@@ -1,0 +1,26 @@
+/*
+ * ------------------------ colors ---------------------------------------
+ * 
+ * Package:         client
+ * Module:          scss
+ * File:            _colors.scss
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-21 
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
+$primary: #003052;
+$secondary: #ffa05c;
+$dark: #001829;
+$light: #f3f5f7;
+$gray: #e6eaef;
+$accent: #5492b6;
+
+$custom-colors: (
+    "accent": $accent,
+    "gray": $gray,
+);

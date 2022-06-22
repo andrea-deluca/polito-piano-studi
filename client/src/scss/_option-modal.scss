@@ -1,0 +1,24 @@
+/*
+ * ------------------------ option-modal -------------------------------
+ * 
+ * Package:         client
+ * Module:          scss
+ * File:            _option-modal.scss
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-21
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
+@import 'colors';
+
+.modal-option {
+    transition: all .2s;
+}
+
+.modal-option:hover {
+    background-color: $gray;
+}

@@ -1,0 +1,26 @@
+/*
+ * ------------------------ navigation ----------------------------------
+ * 
+ * Package:         client
+ * Module:          scss
+ * File:            _navigation.scss
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-21    
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
+.navigation-item {
+    transition: 0.3s;
+}
+
+.navigation-item:hover {
+    opacity: 100% !important;
+}
+
+.offcanvas-item:hover {
+    padding-left: 10%;
+}

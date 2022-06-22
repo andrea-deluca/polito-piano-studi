@@ -1,0 +1,35 @@
+/*
+ * ------------------------ sidebar -------------------------------------
+ * 
+ * Package:         client
+ * Module:          scss
+ * File:            _sidebar.scss
+ * 
+ * Author:          Andrea Deluca - S303906
+ * Last modified:   2022-06-21 
+ * 
+ * Copyright (c) 2022 - Andrea Deluca
+ * All rights reserved.
+ * --------------------------------------------------------------------
+ */
+
+@import 'colors';
+
+.sidebar {
+    position: absolute;
+    z-index: 999;
+    transition: all 0.3s;
+}
+
+.sidebar-close {
+    transform: translateX(-100%);
+}
+
+.sidebar-navlink {
+    transition: all 0.3s;
+}
+
+.sidebar-navlink:hover {
+    background-color: $gray;
+    padding: 1rem;
+}
