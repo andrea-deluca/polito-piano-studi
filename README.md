@@ -587,6 +587,6 @@ This component allows the logged in user to edit his study plan and its correlat
 | :-- | :-------- | :------- | :-------------- | :------------ | ---------- |
 | 1   | Testuser  | User1    | user1@polito.it | Password123\* | Full-time  |
 | 2   | Testuser  | User2    | user2@polito.it | Password123\* | Part-time  |
-| 3   | Testuser  | User3    | user3@polito.it | Password123\* |
+| 3   | Testuser  | User3    | user3@polito.it | Password123\* | Part-time  |
 | 4   | Testuser  | User4    | user4@polito.it | Password123\* |
 | 5   | Testuser  | User5    | user5@polito.it | Password123\* |

@@ -29,37 +29,37 @@ const SessionContext = createContext([{}, {}]);
 const SessionProvider = ({ children }) => {
     const [data, setData] = useState({ user: null, plan: null }); // Stores user and plan data
     const [loggedIn, setLoggedIn] = useState(null); // Set while the user is logged in
-    const [loading, setLoading] = useState(true); // Set while waiting for API call promise
+    const [loading, setLoading] = useState(false); // Set while waiting for API call promise
     const [dirty, setDirty] = useState({ user: true, plan: true }); // Set when an info update is needed
 
     // Load user data into client session
     useEffect(() => {
-        setLoading(true);
         // If an update is needed
         if (dirty.user)
-            api.sessions.getUserInfo()
-                .then(user => {
-                    // The user is logged in, so store user data into client session
-                    // and set loggedIn state
-                    setData((old) => ({ ...old, user: { ...user } }));
-                    setLoggedIn(true);
-                })
-                .catch((err) => {
-                    // An error occurs, so set user data to null and unset
-                    // the loggedIn state
-                    setData((old) => ({ ...old, user: null }));
-                    setLoggedIn(false);
-                })
-                .finally(() => {
-                    // User data is updated
-                    setDirty((old) => ({ ...old, user: false }))
-                })
-    }, [dirty.user])
+            setLoading(true);
+        api.sessions.getUserInfo()
+            .then(user => {
+                // The user is logged in, so store user data into client session
+                // and set loggedIn state
+                setData((old) => ({ ...old, user: { ...user } }));
+                setLoggedIn(true);
+            })
+            .catch(() => {
+                // An error occurs, so set user data to null and unset
+                // the loggedIn state
+                setData((old) => ({ ...old, user: null }));
+                setLoggedIn(false);
+            })
+            .finally(() => {
+                // User data is updated
+                setDirty((old) => ({ ...old, user: false }))
+            })
+    }, [dirty.user]) // eslint-disable-line react-hooks/exhaustive-deps
 
     // Load plan data into client session
     useEffect(() => {
-        setLoading(true);
         // If an update is needed
+        setLoading(true);
         if (dirty.plan)
             api.plans.getStudyPlan()
                 .then((studyPlan) => {
@@ -67,7 +67,7 @@ const SessionProvider = ({ children }) => {
                     // so store plan data into client session
                     setData((old) => ({ ...old, plan: { ...studyPlan } }))
                 })
-                .catch((err) => {
+                .catch(() => {
                     // An error occurs, so set plan data to null
                     setData((old) => ({ ...old, plan: null }))
                 })
@@ -78,7 +78,7 @@ const SessionProvider = ({ children }) => {
                 })
         // Plan data does not need updates
         else setLoading(false);
-    }, [dirty.plan])
+    }, [dirty.plan]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const session = { ...data, loggedIn }; // Data object
     const setSession = { setData, setDirty }; // Actions object

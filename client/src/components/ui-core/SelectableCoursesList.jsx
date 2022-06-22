@@ -71,13 +71,12 @@ const SelectableCoursesList = ({ planCourses, actions }) => {
         const preparatoryCourse = courses.find(course => course.preparatoryCourse && course.preparatoryCourse.code === deselectedCourse.code);
         if (preparatoryCourse && planCourses.includes(preparatoryCourse.code)) {
             // If exists a course that has it as preparatory course, removes both of them and runs a warning notification to the user
-            actions.setPlanCourses((old) => old.filter(planCourse => planCourse !== preparatoryCourse.code))
-            actions.setCredits(old => old - preparatoryCourse.credits);
-            notify.warning(`Per ragioni di propedeucità è stato rimosso anche il corso ${preparatoryCourse.code} ${preparatoryCourse.name}`);
+            notify.error(`Il corso selezionato non può essere rimosso in quanto propedeutico per il corso ${preparatoryCourse.code} ${preparatoryCourse.name}`);
+        } else {
+            // Else, removes just the course that has to been removed
+            actions.setPlanCourses((old) => old.filter(planCourse => planCourse !== deselectedCourse.code))
+            actions.setCredits(old => old - deselectedCourse.credits);
         }
-        // Else, removes just the course that has to been removed
-        actions.setPlanCourses((old) => old.filter(planCourse => planCourse !== deselectedCourse.code))
-        actions.setCredits(old => old - deselectedCourse.credits);
     }
 
     // Checks if the selected course may be put into the study plan and, in case, selects it

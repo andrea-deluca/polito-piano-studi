@@ -24,7 +24,7 @@ const planModel = require('../models/study-plan.model');
 const listModel = require('../models/courses-list.model');
 
 // Checks if there are some errors associated with courses constraints
-const checkForConstraintsError = (planCourses, courses, credits) => {
+const checkForConstraintsError = (planCourses, courses, credits, inserts) => {
     let constraintError = false;
 
     const initialValue = 0;
@@ -38,7 +38,7 @@ const checkForConstraintsError = (planCourses, courses, credits) => {
         else if (course.incompatibleCourses && course.incompatibleCourses.find(incompatibleCourse => planCourses.includes(courses.find(course => course.code === incompatibleCourse.code))))
             constraintError = true;
         // Checks for max enrolled students error
-        else if (course.maxStudents && course.maxStudents === course.enrolledStudents)
+        else if (inserts.includes(course.code) && course.maxStudents && course.maxStudents < course.enrolledStudents + 1)
             constraintError = true;
         // Checks for number of credits
         else if (realCredits !== credits)
@@ -67,7 +67,7 @@ exports.withConstraints = (req, res, next) => {
                             })
 
                             // Checks if there is some constraints error
-                            if (checkForConstraintsError(updatedPlan, courses, parseInt(req.body.plan.credits))) {
+                            if (checkForConstraintsError(updatedPlan, courses, parseInt(req.body.plan.credits), req.body.updates.inserts)) {
                                 // If there is some error, sends an HTTP error as response
                                 const error = new createError.UnprocessableEntity('Study plan constraints not respected')
                                 return res.status(error.statusCode).json({ message: error.message });
@@ -89,7 +89,7 @@ exports.withConstraints = (req, res, next) => {
                         })
 
                         // Checks for some constraint error
-                        if (checkForConstraintsError(updatedPlan, courses, parseInt(req.body.plan.credits))) {
+                        if (checkForConstraintsError(updatedPlan, courses, parseInt(req.body.plan.credits), req.body.updates.inserts)) {
                             // If there is some error, sends an HTTP error as response
                             const error = new createError.UnprocessableEntity('Study plan constraints not respected')
                             return res.status(error.statusCode).json({ message: error.message });

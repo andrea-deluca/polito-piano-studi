@@ -60,7 +60,8 @@ const Plan = () => {
     useEffect(() => {
         api.courses.retrieveAll()
             .then(courses => setCourses(courses))
-    }, [])
+            .catch(err => notify.error(err));
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     if (session.plan)
         return (

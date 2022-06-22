@@ -77,7 +77,6 @@ exports.removeCourse = (list, course) => {
     })
 }
 
-// REVIEW THIS <----------------------------------------------------------
 // Function to create a new courses list asociated with a study plan
 exports.createCoursesList = (courses) => {
     return new Promise((resolve, reject) => {

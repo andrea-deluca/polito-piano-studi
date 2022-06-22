@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 import { api } from "../../services";
-import { useSession } from "../../hooks";
+import { useNotification, useSession } from "../../hooks";
 import { navbarItems, sidebarItems } from "../../constants";
 
 import HamburgerMenu from "./HamburgerMenu";
@@ -29,13 +29,13 @@ import NavigationLinks from "./NavigationLinks";
 // -- Not exported
 const Navigation = () => {
     const session = useSession(); // Session handler
+    const notify = useNotification(); // Notification handler
 
     // Perform logout of the logged in user
     const handleLogout = () => {
         api.sessions.logout()
-            .then(() => {
-                session.updateInfo();
-            })
+            .then(() => session.updateInfo())
+            .catch(err => notify.error(err))
     }
 
     return (

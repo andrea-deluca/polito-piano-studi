@@ -15,7 +15,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:9000';
+const BASE_URL = 'http://localhost:3001';
 
 const sessions = {
     login: (credentials) => {

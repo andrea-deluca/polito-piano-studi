@@ -22,7 +22,7 @@ import { faFolder, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-i
 import classNames from 'classnames';
 
 import { api } from '../../services';
-import { useSession } from '../../hooks';
+import { useNotification, useSession } from '../../hooks';
 import { sidebarItems } from '../../constants';
 
 import AppBrand from './AppBrand';
@@ -48,6 +48,7 @@ const SidebarLink = ({ link }) => {
 const Sidebar = ({ show }) => {
     const [modal, setModal] = useState(false); // Set while OptionModal is open
     const session = useSession(); // Session handler
+    const notify = useNotification(); // Notification handler
     const navigate = useNavigate(); // Navigation handler
 
     // Dynamic classes
@@ -59,9 +60,8 @@ const Sidebar = ({ show }) => {
     // Perform logout of the logged in user
     const handleLogout = () => {
         api.sessions.logout()
-            .then(() => {
-                session.updateInfo();
-            })
+            .then(() => session.updateInfo())
+            .catch(err => notify.error(err))
     }
 
     // Sideber button handler

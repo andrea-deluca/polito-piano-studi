@@ -36,7 +36,7 @@ authentication.serializeUser();
 authentication.deserializeUser();
 
 // Setting up the used port for the server
-const PORT = 9000;
+const PORT = 3001;
 
 // init express
 const app = new express();
