@@ -34,7 +34,7 @@ const Home = () => {
                     </h3>
                 </div>
                 <ButtonGroup>
-                    <Link to={"/esplora"}>
+                    <Link to={"/explore"}>
                         <Button variant='primary' size='lg' className='px-5 p-3 rounded-3 me-4'>
                             <FontAwesomeIcon icon={faBook} className="me-3" />
                             Esplora
