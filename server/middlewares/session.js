@@ -34,13 +34,15 @@ exports.useLocal = () => passport.use(new LocalStrategy(function verify(username
     userModel.getUserByEmail(username)
         .then(user => {
             // if the user exists, check for password matching
-            crypto.pbkdf2(password, user.salt, 310000, 32, 'sha256', function (err, hashedPassword) {
-                // An error occurs with pbkdf2 or crypto
+            crypto.scrypt(password, user.salt, 32, function (err, hashedPassword) {
+                // An error occurs with crypto
                 if (err) return done(new createError.InternalServerError("Internal server error with crypto"));
+
+                const passwordHex = Buffer.from(user.password, 'hex');
 
                 // If the given password does not match with the one within the DB
                 // return an error.
-                if (!crypto.timingSafeEqual(user.password, hashedPassword))
+                if (!crypto.timingSafeEqual(passwordHex, hashedPassword))
                     return done(new createError.Unauthorized("Username e/o password errati!"));
 
                 // If it's all right, the user is logged in

@@ -51,26 +51,6 @@ exports.getNextId = () => {
     })
 }
 
-// REVIEW THIS <----------------------------------------------------------
-// Function to create a new courses list asociated with a study plan
-exports.createCoursesList = (courses) => {
-    return new Promise((resolve, reject) => {
-        // Gets next id to use to store the new list
-        this.getNextId()
-            .then(id => {
-                const query = 'INSERT INTO courses_lists (id, course_code) VALUES (?, ?)';
-                const stmt = db.prepare(query);
-                courses.map(course => {
-                    stmt.run([id, course], function (err) {
-                        if (err) return reject(new createError.InternalServerError("Error while creating courses list"));
-                    })
-                });
-                resolve(id);
-            })
-            .catch(err => reject(err))
-    })
-}
-
 // Function to insert a new course into a list
 exports.insertCourse = (list, course) => {
     return new Promise((resolve, reject) => {
@@ -94,6 +74,26 @@ exports.removeCourse = (list, course) => {
             if (err) return reject(new createError.InternalServerError(err.message));
             else resolve();
         })
+    })
+}
+
+// REVIEW THIS <----------------------------------------------------------
+// Function to create a new courses list asociated with a study plan
+exports.createCoursesList = (courses) => {
+    return new Promise((resolve, reject) => {
+        // Gets next id to use to store the new list
+        this.getNextId()
+            .then(id => {
+                const query = 'INSERT INTO courses_lists (id, course_code) VALUES (?, ?)';
+                const stmt = db.prepare(query);
+                courses.map(course => {
+                    stmt.run([id, course], function (err) {
+                        if (err) return reject(new createError.InternalServerError("Error while creating courses list"));
+                    })
+                });
+                resolve(id);
+            })
+            .catch(err => reject(err))
     })
 }
 
