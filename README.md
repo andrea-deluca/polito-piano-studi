@@ -1,6 +1,4 @@
-# Exam #1: "Piano degli studi"
-
-## Student: s303906 DELUCA ANDREA
+This project has been developed by Andrea Deluca for the course of "Applicazioni Web I", attended during the academic year 2021/22 at Politecnico di Torino, Master's Degree in Computer Engineering.
 
 ## Table of Contents
 
